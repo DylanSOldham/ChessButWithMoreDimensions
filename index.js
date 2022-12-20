@@ -1,36 +1,15 @@
 document.body.style = "background: darkslategray";
 
-let contentdiv = document.createElement("div");
-document.body.appendChild(contentdiv);
-contentdiv.style = "display: flex; direction: row"
-
-let canvas = document.createElement("canvas");
-contentdiv.appendChild(canvas);
+let canvas = document.querySelector("canvas");
 canvas.width = 600;
 canvas.height = 600;
 canvas.oncontextmenu = (e) => e.preventDefault();
-
 let ctx = canvas.getContext("2d");
 
-
-let inputdiv = document.createElement("div");
-contentdiv.append(inputdiv);
-inputdiv.style = "display: block; direction: column"
-
-let turnIndicator = document.createElement("h3");
-inputdiv.appendChild(turnIndicator);
-turnIndicator.textContent = "White's Turn";
-turnIndicator.style = "padding-left: 5px; margin-left: 5px; color: white; background: black; height: 25px";
-
-let addSquareButton = document.createElement("button");
-addSquareButton.textContent = "Add Square";
-addSquareButton.style = "display: flex; margin: 5px;"
-inputdiv.append(addSquareButton);
-
-let addConnectionButton = document.createElement("button");
-addConnectionButton.textContent = "Add Connection";
-addConnectionButton.style = "display: flex; margin: 5px; background: gray;"
-inputdiv.append(addConnectionButton);
+let turnIndicator = document.querySelector("#turn-indicator");
+let addSquareButton = document.querySelector("#add-square");
+let addConnectionButton = document.querySelector("#add-connection");
+let dimensionSelect = document.querySelector("#select-dimension");
 
 spritesheet = new Image();
 spritesheet.src = 'assets/sprites.png';
@@ -274,6 +253,18 @@ const drawConnection = (connection, sp) => {
         case -2:
         case 2:
             color = "blue";
+            break;
+        case -3:
+        case 3:
+            color = "green";
+            break;
+        case -4:
+        case 4:
+            color = "violet";
+            break;
+        case -5:
+        case 5:
+            color = "orange";
             break;
         default:
             break;
@@ -620,7 +611,7 @@ const updateSquare = (square) => {
             addConnectionButton.textContent = "Select An Endpoint Square";
         } else if (!newConn2) {
             newConn2 = selectedSquare;
-            makeConnection(newConn1, newConn2, 1);
+            makeConnection(newConn1, newConn2, parseInt(dimensionSelect.value));
             advanceTurn();
             addingConnection = false;
             addConnectionButton.textContent = "Add Connection";
