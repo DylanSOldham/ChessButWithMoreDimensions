@@ -612,12 +612,12 @@ const updateSquare = (square) => {
         } else if (!newConn2) {
             newConn2 = selectedSquare;
 
-            //if ((whiteTurn && squareIsCheck(newConn2, kingSquareB))
-            // || (!whiteTurn && squareIsCheck(newConn2, kingSquareW))
-            //) {
+            if ((whiteTurn && squareIsCheck(newConn2, kingSquareB))
+             || (!whiteTurn && squareIsCheck(newConn2, kingSquareW))
+            ) {
                 makeConnection(newConn1, newConn2, parseInt(dimensionSelect.value));
                 advanceTurn();
-            //}
+            }
 
             addingConnection = false;
             addConnectionButton.textContent = "Add Connection";
