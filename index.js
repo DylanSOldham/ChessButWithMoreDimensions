@@ -301,6 +301,19 @@ const drawConnection = (connection, sp) => {
     ctx.closePath();
 }
 
+const advanceTurn = () => {
+    whiteTurn = !whiteTurn; turnNum++;
+    if (turnNum > 5) {
+        addConnectionButton.style = "display: flex; margin: 5px;"
+    }
+
+    turnIndicator.style = whiteTurn 
+        ? "margin-left: 10px; color: white; background: black; height: 25px" 
+        : "margin-left: 10px; color: black; background: white; height: 25px";
+    turnIndicator.textContent = whiteTurn ? "White's Turn" : "Black's Turn";
+    if ((whiteTurn && whiteCheck) || (!whiteTurn && blackCheck)) turnIndicator.textContent += " (IN CHECK)";
+}
+
 const whitePawnMoveValid = (s1, s2, update) => {
 
     // The pawns are limited to the original dimensions
@@ -608,7 +621,7 @@ const updateSquare = (square) => {
         } else if (!newConn2) {
             newConn2 = selectedSquare;
             makeConnection(newConn1, newConn2, 1);
-            whiteTurn = !whiteTurn; turnNum++;
+            advanceTurn();
             addingConnection = false;
             addConnectionButton.textContent = "Add Connection";
             addConnectionButton.style = "display: flex; margin: 5px;";
@@ -632,16 +645,7 @@ const updateSquare = (square) => {
                 kingSquareB = square;
             }
 
-            whiteTurn = !whiteTurn; turnNum++;
-            if (turnNum > 5) {
-                addConnectionButton.style = "display: flex; margin: 5px;"
-            }
-
-            turnIndicator.style = whiteTurn 
-                ? "margin-left: 10px; color: white; background: black; height: 25px" 
-                : "margin-left: 10px; color: black; background: white; height: 25px";
-            turnIndicator.textContent = whiteTurn ? "White's Turn" : "Black's Turn";
-            if ((whiteTurn && whiteCheck) || (!whiteTurn && blackCheck)) turnIndicator.textContent += " (IN CHECK)";
+            advanceTurn();
 
             if (whiteTurn && whiteCheck) {
                 let moveAvailable = false;
