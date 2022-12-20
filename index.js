@@ -611,8 +611,14 @@ const updateSquare = (square) => {
             addConnectionButton.textContent = "Select An Endpoint Square";
         } else if (!newConn2) {
             newConn2 = selectedSquare;
-            makeConnection(newConn1, newConn2, parseInt(dimensionSelect.value));
-            advanceTurn();
+
+            //if ((whiteTurn && squareIsCheck(newConn2, kingSquareB))
+            // || (!whiteTurn && squareIsCheck(newConn2, kingSquareW))
+            //) {
+                makeConnection(newConn1, newConn2, parseInt(dimensionSelect.value));
+                advanceTurn();
+            //}
+
             addingConnection = false;
             addConnectionButton.textContent = "Add Connection";
             addConnectionButton.style = "display: flex; margin: 5px;";

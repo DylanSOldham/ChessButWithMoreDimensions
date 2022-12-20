@@ -26,6 +26,35 @@
                 </div>
             </div>
         </div>
+        <div id="notes" style="color:white">
+            <p>
+                This is chess, except after move 5 you have the option to use your turn to arbitrarily connect
+                two board squares instead of moving a piece. The board starts with horizontal (Dimension 1)
+                and vertical (Dimension 2) connections already in place. You are free to add connections of
+                dimensions from 1 to 5, as long as they don't land on a square that's in the sight of an opposing piece. 
+                The visual layout of all of the squares on the screen does not matter, only the connections 
+                between them.
+            </p>
+            <p>
+                There is no AI opponent - it's a hotseat game.
+            </p>
+            <p>
+                You can move the pieces like normal by left-clicking and dragging.
+            </p>
+            <p>
+                You can rearrange the board squares themselves by right-clicking and dragging them to a new location.
+            </p>
+            <p>
+                To add a new connection after the 5th move, click on the button that says "Add Connection", 
+                use the adjacent selector to choose a dimension, and then left-click a beginning and an end 
+                square to create the connection.
+            </p>
+            <p>
+                One major note though: Try to avoid making loops in one dimension. The pieces will see this as 
+                an infinite stretch of board and they will not be able to analyze it in a finite amount of time. 
+                They cannot detect cycles.
+            </p>
+        </div>
         <script src="index.js"></script>
     </body>
 </html>
